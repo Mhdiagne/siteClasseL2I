@@ -10,11 +10,18 @@ function BodyBlock () {
   return (
     <>
       <Carroussel/>
+      <br/> <p>------------------------</p>
       <Apropos/>
+      <br/> <p>------------------------</p>
       <DecouvrerIngenierieInfo/>
+      <br/> <p>------------------------</p>
       <CoursPopulaire/>
+      <br/> <p>------------------------</p>
       <FutureEtudiant/>
+      <br/> <p>------------------------</p>
       <NosPartenaires/>
+      <br/> <p>------------------------</p>
+
     </>
   )
 }

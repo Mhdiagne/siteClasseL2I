@@ -2,7 +2,7 @@ import React from 'react'
 
 function FooterBlock () {
   return (
-    <div>Footer</div>
+    <div>DRAME Footer</div>
   )
 }
 

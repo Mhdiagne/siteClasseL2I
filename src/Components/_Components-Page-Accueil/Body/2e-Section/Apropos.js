@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Apropos() {
   return (
-    <div>Apropos</div>
+    <div>CMC 2e-section</div>
   )
 }

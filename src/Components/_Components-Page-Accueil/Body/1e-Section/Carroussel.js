@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Carroussel() {
   return (
-    <div>Carroussel</div>
+    <div>EADARAK 1er-section</div>
   )
 }

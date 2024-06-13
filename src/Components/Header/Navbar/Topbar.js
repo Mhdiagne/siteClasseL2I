@@ -10,9 +10,10 @@ const Topbar = () => {
                 <div className="d-flex justify-content-between topbar ">
                     <div className="top-messagerie">
                         <h5> 
-                            <Link to="/" style={{color:'white', textDecoration:'none'}}>
-                                <i className="fas fa-envelope "/> &nbsp;&nbsp;
-                                l2i-uasz@univ.zig.sn
+                            <Link to="mailto:l2iuasz@gmail.com" style={{color:'white', textDecoration:'none'}}>
+                                <i className="fas fa-envelope "/> &nbsp;
+                                l2iuasz@gmail.com
+
                             </Link>   
                         </h5>
 
