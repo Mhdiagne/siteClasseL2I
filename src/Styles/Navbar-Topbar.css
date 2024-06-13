@@ -1,0 +1,152 @@
+@import url(./_variables.css);
+
+/* ----Quelques ajustements CSS */
+#IconeCostum{
+  background-color: white !important;
+  color: var(--bgColor2) !important;
+}
+#IconeCostum:hover{
+  background-color: var(--bgColor2) !important;
+  color: white !important;
+}
+.mesBtn{
+  background-color: var(--bgColor1);
+  border: none;
+  border-radius: 30px;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 500;
+  height: auto;
+  width: 10rem;
+  #jajeuf{
+    text-decoration: none;
+    color: white;
+  }
+}
+.mesBtn:hover{
+  background-color: white !important;
+  #jajeuf{
+    text-decoration: none;
+    color: var(--bgColor2) !important;
+  }
+
+}
+.nav-item,
+.mesBtn {
+  margin-right: 3rem;
+}
+
+.navbar-nav .nav-item:last-child,
+.navbar-nav .mesBtn:last-child {
+  margin-right: 0; 
+}
+
+.middlebar-container {
+  display: flex;
+  align-items: center;
+  /* padding: 12px ; */
+  padding-top: 5px;
+  margin-left: 10rem;
+}
+
+.middlebar-logo {
+  margin-right: 10px;
+}
+
+.middlebar-text .text1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.middlebar-text .text2 {
+  font-size: 25px;
+  font-weight: bold;}
+
+/*-----------------------------------------------------------------*/
+/*** Topbar Start ***/
+
+.topbar .top-info {
+    letter-spacing: 1px;
+  }
+  
+  .topbar .top-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .topbar .top-link a {
+    margin-right: 10px;
+  }
+  
+  #note {
+    width: 500px;
+    overflow: hidden;
+  }
+  
+  #note small {
+    position: relative;
+    display: inline-block;
+    animation: mymove 5s infinite;
+    animation-timing-function: all;
+  }
+  
+  @keyframes mymove {
+    from {left: -100%;}
+    to {left: 100%;}
+  }
+  
+  /*** Topbar End ***/
+  .hoverList{
+    background-color: var(--bgColor2);
+  }
+  
+  /*** Navbar Start ***/
+  .navbar .navbar-nav {
+    padding-bottom: -15px;
+  }
+  
+  .navbar .navbar-nav .nav-link {
+    padding: 10px;
+    color: var(--bs-white);
+    font-size: 18px;
+    outline: none;
+    
+  }
+  
+  .navbar .navbar-nav .nav-link:hover,
+  .navbar .navbar-nav .nav-link.active {
+    color: var(--bs-white) !important;
+  }
+  
+  .navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "font awesome 5 free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  
+  @media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        top: 100%;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+        transition: .5s;
+        opacity: 0;
+    }
+  }
+  
+  .navbar .nav-item:hover .dropdown-menu {
+    transform: rotateX(0deg);
+    visibility: visible;
+    transition: .5s;
+    opacity: 1;
+  }
+  
+  /*** Navbar End ***/
+  
+  
