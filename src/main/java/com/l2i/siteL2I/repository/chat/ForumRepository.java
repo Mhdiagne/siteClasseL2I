@@ -1,0 +1,11 @@
+package com.l2i.siteL2I.repository.chat;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.l2i.siteL2I.model.chat.Forum;
+
+@Repository
+public interface ForumRepository extends JpaRepository<Forum, Integer> {
+    
+}
