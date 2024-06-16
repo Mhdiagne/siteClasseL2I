@@ -21,10 +21,6 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Forum extends BaseEntity {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    // private Integer id;
-
     private String name;
 
     @OneToMany(mappedBy = "forum")

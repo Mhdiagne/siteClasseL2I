@@ -1,5 +1,6 @@
 package com.l2i.siteL2I.model.person;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -37,7 +38,11 @@ public class User {
     private String email;
 
     private String password;
-    // private String type;
+
+    private LocalDateTime creatAt;
+    private LocalDateTime lastModifiedAt;
+    private String createdBy;
+    private String lastModifiedBy;
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference

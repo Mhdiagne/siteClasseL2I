@@ -1,5 +1,6 @@
 package com.l2i.siteL2I.model.person;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,17 +28,13 @@ import lombok.experimental.SuperBuilder;
 @DiscriminatorValue("professor")
 public class Professor extends User {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    // private Integer id;
-
     private String department;
     private String specialityProfessor;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     @JsonBackReference
-    private Classroom classe;
+    private Classroom classeroom;
 
     @OneToMany(mappedBy = "professor")
     @JsonManagedReference

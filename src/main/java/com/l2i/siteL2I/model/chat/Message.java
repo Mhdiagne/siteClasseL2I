@@ -21,15 +21,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Message extends BaseEntity {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    // private Integer id;
-
     private String content;
-    // private User author;
-
-    // @Column(updatable = false, nullable = false)
-    // private Date dateCreated;
 
     @ManyToOne
     @JoinColumn(name = "forum_id")

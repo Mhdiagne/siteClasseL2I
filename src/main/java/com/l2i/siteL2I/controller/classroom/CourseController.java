@@ -1,4 +1,4 @@
-package com.l2i.siteL2I.controller.chat;
+package com.l2i.siteL2I.controller.classroom;
 
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -12,42 +12,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.l2i.siteL2I.dto.chat.ForumRequest;
-import com.l2i.siteL2I.dto.chat.ForumResponse;
-import com.l2i.siteL2I.service.chat.ForumService;
+import com.l2i.siteL2I.dto.classroom.CourseRequest;
+import com.l2i.siteL2I.dto.classroom.CourseResponse;
+import com.l2i.siteL2I.service.classroom.CourseService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/forum")
-public class ForumController {
+@RequestMapping("/course")
+public class CourseController {
 
-    private final ForumService forumService;
+    private final CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<List<ForumResponse>> getAll() {
-        return forumService.getAll();
+    public ResponseEntity<List<CourseResponse>> getAll() {
+        return courseService.getAll();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ForumResponse> getById(@PathVariable("id") Integer id) {
-        return forumService.getById(id);
+    public ResponseEntity<CourseResponse> getById(@PathVariable("id") Integer id) {
+        return courseService.getById(id);
     }
 
     @PostMapping
-    public ResponseEntity<ForumResponse> create(@RequestBody ForumRequest requestItem) {
-        return forumService.create(requestItem);
+    public ResponseEntity<CourseResponse> create(@RequestBody CourseRequest requestItem) {
+        return courseService.create(requestItem);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ForumResponse> update(@PathVariable("id") Integer id, @RequestBody ForumRequest requestItem) {
-        return forumService.update(id, requestItem);
+    public ResponseEntity<CourseResponse> update(@PathVariable("id") Integer id, @RequestBody CourseRequest requestItem) {
+        return courseService.update(id, requestItem);
     }
     
 
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
-        return forumService.delete(id);
+        return courseService.delete(id);
     }
 }
+
+
+

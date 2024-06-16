@@ -23,22 +23,18 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Classroom extends BaseEntity {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    // private Integer id;
-
     private String name;
     private int promotionNumber;
 
-    @OneToMany(mappedBy = "classe")
+    @OneToMany(mappedBy = "classeroom")
     @JsonManagedReference
     private List<Student> students;
 
-    @OneToMany(mappedBy = "classe")
+    @OneToMany(mappedBy = "classeroom")
     @JsonManagedReference
     private List<Professor> professors;
 
-    @OneToMany(mappedBy = "classe")
+    @OneToMany(mappedBy = "classeroom")
     @JsonManagedReference
     private List<Course> courses;
 

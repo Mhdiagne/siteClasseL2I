@@ -1,5 +1,7 @@
 package com.l2i.siteL2I.model.person;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.l2i.siteL2I.model.classroom.Classroom;
 
@@ -22,14 +24,10 @@ import lombok.experimental.SuperBuilder;
 @DiscriminatorValue("student")
 public class Student extends User {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    // private Integer id;
-
     private String specialityStudent;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     @JsonBackReference
-    private Classroom classe;
+    private Classroom classeroom;
 }

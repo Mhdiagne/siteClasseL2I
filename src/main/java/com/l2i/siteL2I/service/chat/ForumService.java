@@ -93,7 +93,7 @@ public class ForumService {
         .build();
     }
 
-    private Forum mapToForum(ForumRequest forumRequest) {
+    public Forum mapToForum(ForumRequest forumRequest) {
         return Forum.builder()
         .name(forumRequest.getName())
         .creatAt(LocalDateTime.now())

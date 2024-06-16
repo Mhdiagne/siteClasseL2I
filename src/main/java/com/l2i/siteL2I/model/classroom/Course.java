@@ -20,10 +20,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 public class Course extends BaseEntity {
-    
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    // private Integer id;
 
     private String title;
     private String pdfContent;
@@ -31,7 +27,7 @@ public class Course extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "classroom_id")
     @JsonBackReference
-    private Classroom classe;
+    private Classroom classeroom;
 
     @ManyToOne
     @JoinColumn(name = "professor_id")

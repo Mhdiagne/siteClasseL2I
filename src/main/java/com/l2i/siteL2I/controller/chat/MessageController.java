@@ -12,42 +12,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.l2i.siteL2I.dto.chat.ForumRequest;
-import com.l2i.siteL2I.dto.chat.ForumResponse;
-import com.l2i.siteL2I.service.chat.ForumService;
+import com.l2i.siteL2I.dto.chat.MessageRequest;
+import com.l2i.siteL2I.dto.chat.MessageResponse;
+import com.l2i.siteL2I.service.chat.MessageService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/forum")
-public class ForumController {
+@RequestMapping("/message")
+public class MessageController {
 
-    private final ForumService forumService;
+    private final MessageService messageService;
 
     @GetMapping
-    public ResponseEntity<List<ForumResponse>> getAll() {
-        return forumService.getAll();
+    public ResponseEntity<List<MessageResponse>> getAll() {
+        return messageService.getAll();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ForumResponse> getById(@PathVariable("id") Integer id) {
-        return forumService.getById(id);
+    public ResponseEntity<MessageResponse> getById(@PathVariable("id") Integer id) {
+        return messageService.getById(id);
     }
 
     @PostMapping
-    public ResponseEntity<ForumResponse> create(@RequestBody ForumRequest requestItem) {
-        return forumService.create(requestItem);
+    public ResponseEntity<MessageResponse> create(@RequestBody MessageRequest requestItem) {
+        return messageService.create(requestItem);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ForumResponse> update(@PathVariable("id") Integer id, @RequestBody ForumRequest requestItem) {
-        return forumService.update(id, requestItem);
+    public ResponseEntity<MessageResponse> update(@PathVariable("id") Integer id, @RequestBody MessageRequest requestItem) {
+        return messageService.update(id, requestItem);
     }
     
 
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
-        return forumService.delete(id);
+        return messageService.delete(id);
     }
 }
+
