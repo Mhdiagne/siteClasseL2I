@@ -13,6 +13,7 @@ import com.l2i.siteL2I.dto.person.ProfessorRequest;
 import com.l2i.siteL2I.dto.person.ProfessorResponse;
 import com.l2i.siteL2I.model.person.Professor;
 import com.l2i.siteL2I.repository.person.ProfessorRepository;
+import com.l2i.siteL2I.service.classroom.ClassroomService;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,8 @@ import lombok.AllArgsConstructor;
 public class ProfessorService {
 
     private final ProfessorRepository professorRepository;
+
+    private final ClassroomService classroomService;
 
     public ResponseEntity<List<ProfessorResponse>> getAll() {
         try {
@@ -50,6 +53,16 @@ public class ProfessorService {
         }
     }
 
+    public Professor getByIdProfessor(Integer id) {
+        Optional<Professor> existingItemOptional = professorRepository.findById(id);
+
+        if (existingItemOptional.isPresent()) {
+            return existingItemOptional.get();
+        } else {
+            return null;
+        }
+    }
+
     public ResponseEntity<ProfessorResponse> create(ProfessorRequest requestItem) {
         try {
             ProfessorResponse saveResponseItem = mapToProfessorResponse(professorRepository.save(mapToProfessor(requestItem)));
@@ -66,7 +79,7 @@ public class ProfessorService {
             
             existingItem.setDepartment(requestItem.getDepartment());
             existingItem.setSpecialityProfessor(requestItem.getSpecialityProfessor());
-            existingItem.setClasseroom(requestItem.getClasseroom());
+            existingItem.setClasseroom(classroomService.getByIdClassroom(requestItem.getClasseroom_id()));
             existingItem.setCourses(requestItem.getCourses());
             existingItem.setName(requestItem.getName());
             existingItem.setEmail(requestItem.getEmail());
@@ -110,7 +123,7 @@ public class ProfessorService {
         return Professor.builder()
         .department(professorRequest.getDepartment())
         .specialityProfessor(professorRequest.getSpecialityProfessor())
-        .classeroom(professorRequest.getClasseroom())
+        .classeroom(classroomService.getByIdClassroom(professorRequest.getClasseroom_id()))
         .name(professorRequest.getName())
         .email(professorRequest.getEmail())
         .password(professorRequest.getPassword())

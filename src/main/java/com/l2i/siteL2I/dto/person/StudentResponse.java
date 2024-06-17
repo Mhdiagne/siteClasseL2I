@@ -6,7 +6,6 @@ import java.util.List;
 import com.l2i.siteL2I.model.chat.Message;
 import com.l2i.siteL2I.model.classroom.Classroom;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -50,6 +50,16 @@ public class ForumService {
         }
     }
 
+    public Forum getByIdForum(Integer id) {
+        Optional<Forum> existingItemOptional = forumRepository.findById(id);
+
+        if (existingItemOptional.isPresent()) {
+            return existingItemOptional.get();
+        } else {
+            return null;
+        }
+    }
+
     public ResponseEntity<ForumResponse> create(ForumRequest requestItem) {
         try {
             ForumResponse saveResponseItem = mapToForumResponse(forumRepository.save(mapToForum(requestItem)));

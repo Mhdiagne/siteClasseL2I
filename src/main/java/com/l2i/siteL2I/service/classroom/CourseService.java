@@ -13,6 +13,7 @@ import com.l2i.siteL2I.dto.classroom.CourseRequest;
 import com.l2i.siteL2I.dto.classroom.CourseResponse;
 import com.l2i.siteL2I.model.classroom.Course;
 import com.l2i.siteL2I.repository.classroom.CourseRepository;
+import com.l2i.siteL2I.service.person.ProfessorService;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,9 @@ import lombok.AllArgsConstructor;
 public class CourseService {
 
     private final CourseRepository courseRepository;
+
+    private final ProfessorService professorService;
+    private final ClassroomService classroomService;
 
     public ResponseEntity<List<CourseResponse>> getAll() {
         try {
@@ -66,8 +70,8 @@ public class CourseService {
             
             existingItem.setTitle(requestItem.getTitle());
             existingItem.setPdfContent(requestItem.getPdfContent());
-            existingItem.setClasseroom(requestItem.getClasseroom());
-            existingItem.setProfessor(requestItem.getProfessor());
+            existingItem.setClasseroom(classroomService.getByIdClassroom(requestItem.getClasseroom_id()));
+            existingItem.setProfessor(professorService.getByIdProfessor(requestItem.getProfessor_id()));
             existingItem.setLastModifiedAt(LocalDateTime.now());
 
             return new ResponseEntity<>(mapToCourseResponse(courseRepository.save(existingItem)), HttpStatus.OK);
@@ -102,8 +106,8 @@ public class CourseService {
         return Course.builder()
         .title(courseRequest.getTitle())
         .pdfContent(courseRequest.getPdfContent())
-        .classeroom(courseRequest.getClasseroom())
-        .professor(courseRequest.getProfessor())
+        .classeroom(classroomService.getByIdClassroom(courseRequest.getClasseroom_id()))
+        .professor(professorService.getByIdProfessor(courseRequest.getProfessor_id()))
         .creatAt(LocalDateTime.now())
         .lastModifiedAt(LocalDateTime.now())
         .build();

@@ -3,7 +3,6 @@ package com.l2i.siteL2I.dto.person;
 import java.util.List;
 
 import com.l2i.siteL2I.model.chat.Message;
-import com.l2i.siteL2I.model.classroom.Classroom;
 import com.l2i.siteL2I.model.classroom.Course;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +16,7 @@ public class ProfessorRequest {
     
     private String department;
     private String specialityProfessor;
-    private Classroom classeroom;
+    private Integer classeroom_id;
     private List<Course> courses;
 
     private String name;

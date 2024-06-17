@@ -1,7 +1,7 @@
 package com.l2i.siteL2I;
 
 import java.util.List;
-import java.util.Random;
+// import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -52,7 +52,7 @@ public class SiteL2IApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Faker faker = new Faker();
-		Random random = new Random();
+		// Random random = new Random();
 
 		// Create forums
 		for (int i = 0; i < 10; i++) {
@@ -65,10 +65,10 @@ public class SiteL2IApplication implements CommandLineRunner {
 		
 		// Create messages with random forums
 		for (int j = 0; j < 10; j++) {
-			Forum randomForum = forums.get(random.nextInt(forums.size()));
+			// Forum randomForum = forums.get(random.nextInt(forums.size()));
 			MessageRequest messageRequest = new MessageRequest(
 				faker.lorem().characters(5, 25), 
-				randomForum, 
+				faker.number().numberBetween(1, forums.size()),
 				null, 
 				faker.name().firstName(), 
 				faker.lorem().characters(5, 15)
@@ -81,9 +81,6 @@ public class SiteL2IApplication implements CommandLineRunner {
 		for (int i = 0; i < 3; i++) {
 			ClassroomRequest classroomRequest = new ClassroomRequest(
 				faker.programmingLanguage().name(), 
-				null, 
-				null, 
-				null, 
 				faker.lorem().characters(5, 10)
 			);
 			classroomService.create(classroomRequest);
@@ -94,11 +91,11 @@ public class SiteL2IApplication implements CommandLineRunner {
 
 		// Create professors
 		for (int i = 0; i < 15; i++) {
-			Classroom randomClassroom = classrooms.get(random.nextInt(classrooms.size()));
+			// Classroom randomClassroom = classrooms.get(random.nextInt(classrooms.size()));
 			ProfessorRequest professorRequest = new ProfessorRequest(
 				faker.commerce().department(), 
 				faker.lorem().characters(5, 10), 
-				randomClassroom, 
+				faker.number().numberBetween(1, classrooms.size()),
 				null, 
 				faker.name().lastName(),
 				faker.internet().emailAddress(),
@@ -114,11 +111,11 @@ public class SiteL2IApplication implements CommandLineRunner {
 
 		// Create students
 		for (int j = 0; j < 15; j++) {
-			Classroom classroom = classrooms.get(random.nextInt(classrooms.size()));
+			// Classroom classroom = classrooms.get(random.nextInt(classrooms.size()));
 
 			StudentRequest studentRequest = new StudentRequest(
 				faker.university().name(), 
-				classroom, 
+				faker.number().numberBetween(1, classrooms.size()),
 				faker.name().lastName(),
 				faker.internet().emailAddress(),
 				faker.internet().password(),
@@ -130,14 +127,14 @@ public class SiteL2IApplication implements CommandLineRunner {
 
 		// Create courses
 		for (int k = 0; k < 10; k++) {
-			Classroom classroom = classrooms.get(random.nextInt(classrooms.size()));
-			Professor professor = professors.get(random.nextInt(professors.size()));
+			// Classroom classroom = classrooms.get(random.nextInt(classrooms.size()));
+			// Professor professor = professors.get(random.nextInt(professors.size()));
 
 			CourseRequest courseRequest = new CourseRequest(
 				faker.book().title(), 
 				faker.lorem().sentence(2), 
-				classroom, 
-				professor, 
+				faker.number().numberBetween(1, classrooms.size()),
+				faker.number().numberBetween(1, professors.size()),
 				faker.lorem().sentence(2)
 			);
 			courseService.create(courseRequest);

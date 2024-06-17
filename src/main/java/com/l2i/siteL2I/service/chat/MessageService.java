@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 public class MessageService {
 
     private final MessageRepository messageRepository;
+    private final ForumService forumService;
 
     public ResponseEntity<List<MessageResponse>> getAll() {
         try {
@@ -65,8 +66,11 @@ public class MessageService {
             Message existingItem = existingItemOptional.get();
             
             existingItem.setContent(requestItem.getContent());
-            existingItem.setForum(requestItem.getForum());
-            existingItem.setUser(requestItem.getAuthor());
+
+            if(forumService.getByIdForum(requestItem.getForum_id()) != null)
+                existingItem.setForum(forumService.getByIdForum(requestItem.getForum_id()));
+
+            // existingItem.setUser();
             existingItem.setLastModifiedAt(LocalDateTime.now());
 
             return new ResponseEntity<>(mapToMessageResponse(messageRepository.save(existingItem)), HttpStatus.OK);
@@ -100,8 +104,8 @@ public class MessageService {
     private Message mapToMessage(MessageRequest messageRequest) {
         return Message.builder()
         .content(messageRequest.getContent())
-        .forum(messageRequest.getForum())
-        .user(messageRequest.getAuthor())
+        .forum(forumService.getByIdForum(messageRequest.getForum_id()))
+        // .user(messageRequest.getAuthor())
         .creatAt(LocalDateTime.now())
         .lastModifiedAt(LocalDateTime.now())
         .build();

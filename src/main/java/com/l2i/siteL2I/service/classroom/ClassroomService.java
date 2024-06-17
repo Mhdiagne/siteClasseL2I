@@ -50,6 +50,16 @@ public class ClassroomService {
         }
     }
 
+    public Classroom getByIdClassroom(Integer id) {
+        Optional<Classroom> existingItemOptional = classroomRepository.findById(id);
+
+        if (existingItemOptional.isPresent()) {
+            return existingItemOptional.get();
+        } else {
+            return null;
+        }
+    }
+
     public ResponseEntity<ClassroomResponse> create(ClassroomRequest requestItem) {
         try {
             ClassroomResponse saveResponseItem = mapToClassroomResponse(classroomRepository.save(mapToClassroom(requestItem)));
@@ -65,9 +75,9 @@ public class ClassroomService {
             Classroom existingItem = existingItemOptional.get();
             
             existingItem.setName(requestItem.getName());
-            existingItem.setStudents(requestItem.getStudents());
-            existingItem.setProfessors(requestItem.getProfessors());
-            existingItem.setCourses(requestItem.getCourses());
+            // existingItem.setStudents(requestItem.getStudents());
+            // existingItem.setProfessors(requestItem.getProfessors());
+            // existingItem.setCourses(requestItem.getCourses());
             existingItem.setLastModifiedAt(LocalDateTime.now());
 
             return new ResponseEntity<>(mapToClassroomResponse(classroomRepository.save(existingItem)), HttpStatus.OK);
@@ -102,9 +112,9 @@ public class ClassroomService {
     private Classroom mapToClassroom(ClassroomRequest classroomRequest) {
         return Classroom.builder()
         .name(classroomRequest.getName())
-        .students(classroomRequest.getStudents())
-        .professors(classroomRequest.getProfessors())
-        .courses(classroomRequest.getCourses())
+        // .students(classroomRequest.getStudents())
+        // .professors(classroomRequest.getProfessors())
+        // .courses(classroomRequest.getCourses())
         .creatAt(LocalDateTime.now())
         .lastModifiedAt(LocalDateTime.now())
         .build();

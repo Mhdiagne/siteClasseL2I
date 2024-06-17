@@ -13,6 +13,7 @@ import com.l2i.siteL2I.dto.person.StudentResponse;
 import com.l2i.siteL2I.dto.person.StudentRequest;
 import com.l2i.siteL2I.model.person.Student;
 import com.l2i.siteL2I.repository.person.StudentRepository;
+import com.l2i.siteL2I.service.classroom.ClassroomService;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,8 @@ import lombok.AllArgsConstructor;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+
+    private final ClassroomService classroomService;
 
     public ResponseEntity<List<StudentResponse>> getAll() {
         try {
@@ -50,6 +53,16 @@ public class StudentService {
         }
     }
 
+    public Student getByIdStudent(Integer id) {
+        Optional<Student> existingItemOptional = studentRepository.findById(id);
+
+        if (existingItemOptional.isPresent()) {
+            return existingItemOptional.get();
+        } else {
+            return null;
+        }
+    }
+
     public ResponseEntity<StudentResponse> create(StudentRequest requestItem) {
         try {
             StudentResponse saveResponseItem = mapToStudentResponse(studentRepository.save(mapToStudent(requestItem)));
@@ -65,7 +78,7 @@ public class StudentService {
             Student existingItem = existingItemOptional.get();
             
             existingItem.setSpecialityStudent(requestItem.getSpecialityStudent());
-            existingItem.setClasseroom(requestItem.getClasseroom());
+            existingItem.setClasseroom(classroomService.getByIdClassroom(requestItem.getClasseroom_id()));
             existingItem.setName(requestItem.getName());
             existingItem.setEmail(requestItem.getEmail());
             existingItem.setPassword(requestItem.getPassword());
@@ -105,7 +118,7 @@ public class StudentService {
     private Student mapToStudent(StudentRequest studentRequest) {
         return Student.builder()
         .specialityStudent(studentRequest.getSpecialityStudent())
-        .classeroom(studentRequest.getClasseroom())
+        .classeroom(classroomService.getByIdClassroom(studentRequest.getClasseroom_id()))
         .name(studentRequest.getName())
         .email(studentRequest.getEmail())
         .password(studentRequest.getPassword())
