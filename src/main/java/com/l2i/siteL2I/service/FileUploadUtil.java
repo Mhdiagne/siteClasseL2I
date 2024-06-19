@@ -34,7 +34,7 @@ public class FileUploadUtil {
         String fileName = file.getOriginalFilename();
         if (fileName != null && fileName.contains(".")) {
             String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-            return Arrays.asList(new String[] { "pdf", "docx", })
+            return Arrays.asList(new String[] { "pdf", "docx","odt","pptx", })
                     .contains(fileExtension.trim().toLowerCase());
         }
         return false;
