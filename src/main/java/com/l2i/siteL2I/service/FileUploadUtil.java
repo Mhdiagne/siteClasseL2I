@@ -7,57 +7,41 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploadUtil {
-    
-    public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException{
+
+    public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
-        
+
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
-        try( InputStream inputStream = multipartFile.getInputStream()) {
+        try (InputStream inputStream = multipartFile.getInputStream()) {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(multipartFile.getInputStream(), filePath);
         } catch (IOException ioe) {
-            throw new IOException("Could not save Document file: "+ fileName, ioe);
+            throw new IOException("Could not save Document file: " + fileName, ioe);
         }
     }
 
-    public static byte[] getFile(String fileName, String uploadDir) throws IOException{
-        Path filePath = Paths.get(fileName+uploadDir);
+    public static byte[] getFile(String fileName, String uploadDir) throws IOException {
+        Path filePath = Paths.get(fileName + uploadDir);
         return Files.readAllBytes(filePath);
     }
 
-    
-   
-    // Telecharger l'image de couverture d'un article
-    @GetMapping(path = "/{id}/get-img")
-    public ResponseEntity<?> touverArticleImage(@PathVariable Long id) throws IOException {
-        byte[] image = aService.getImageArticle(id);
-        // String imgType =
-        // FileUploadUtil.getContentType(aService.getArticleById(id).getImageCouverture());
-        return ResponseEntity.status(HttpStatus.OK)
-                .contentType(MediaType.valueOf("image/png"))
-                .body(image);
-    }
-    public static boolean isPdfOrDoc(MultipartFile file) throws IOException{
+    public static boolean isPdfOrDoc(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
         if (fileName != null && fileName.contains(".")) {
-            String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase();
-            return Arrays.asList(new String[]{"pdf", "docx",})
-                .contains(fileExtension.trim().toLowerCase());
+            String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+            return Arrays.asList(new String[] { "pdf", "docx", })
+                    .contains(fileExtension.trim().toLowerCase());
         }
-        return false; 
+        return false;
     }
 
-    public static String getContentType(String fileName){
-        String fileExtension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase() ;
+    public static String getContentType(String fileName) {
+        String fileExtension = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
         String extension = "";
         switch (fileExtension) {
             case "png":
