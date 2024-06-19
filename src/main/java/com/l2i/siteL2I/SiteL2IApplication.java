@@ -137,7 +137,7 @@ public class SiteL2IApplication implements CommandLineRunner {
 				faker.number().numberBetween(1, professors.size()),
 				faker.lorem().sentence(2)
 			);
-			courseService.create(courseRequest);
+			// courseService.create(courseRequest,null);
 		}
 	}
 
