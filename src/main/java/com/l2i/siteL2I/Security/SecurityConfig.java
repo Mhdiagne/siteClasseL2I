@@ -5,12 +5,15 @@ import static org.springframework.security.config.Customizer.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 // import org.springframework.security.authentication.AuthenticationManager;
 // import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 // import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -45,40 +48,39 @@ public class SecurityConfig {
                 return authenticationConfiguration.getAuthenticationManager();
         }
 
-        // @SuppressWarnings("deprecation")
-        // @Bean
-        // SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-        // return http
-        // .csrf(csrf -> csrf.disable())
-        // .cors(withDefaults())
-        // .sessionManagement(management -> management
-        // .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        // .authorizeRequests(authorizeRequests -> authorizeRequests
-        // .requestMatchers(HttpMethod.POST, "/professor").permitAll()
-        // // .requestMatchers(HttpMethod.POST, "/professor").permitAll()
-        // // .requestMatchers(HttpMethod.POST, ).permitAll()
-        // // .requestMatchers(HttpMethod.POST, "/login", "/api/professor",
-        // // "/student",
-        // // "/event")
-        // // .permitAll()
+        @SuppressWarnings("deprecation")
+        @Bean
+        SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+                return http
+                                .csrf(csrf -> csrf.disable())
+                                .cors(withDefaults())
+                                .sessionManagement(management -> management
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authorizeRequests(authorizeRequests -> authorizeRequests
+                                                .requestMatchers(HttpMethod.POST, "/professor").permitAll()
+                                                // .requestMatchers(HttpMethod.POST, "/professor").permitAll()
+                                                // .requestMatchers(HttpMethod.POST, ).permitAll()
+                                                .requestMatchers(HttpMethod.POST, "/login", "/api/professor",
+                                                                "/student",
+                                                                "/event")
+                                                .permitAll()
 
-        // .anyRequest().authenticated())
-        // .exceptionHandling(handling ->
-        // handling.authenticationEntryPoint(exceptionHandler))
-        // .addFilterBefore(authenticationFilter,
-        // UsernamePasswordAuthenticationFilter.class)
-        // .httpBasic(withDefaults())
-        // .build();
-        // }
+                                                .anyRequest().authenticated())
+                                .exceptionHandling(handling -> handling.authenticationEntryPoint(exceptionHandler))
+                                .addFilterBefore(authenticationFilter,
+                                                UsernamePasswordAuthenticationFilter.class)
+                                .httpBasic(withDefaults())
+                                .build();
+        }
 
         // Moins de security
 
-        @Bean
-        SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-                http.csrf(csrf -> csrf.disable()).cors(withDefaults())
-                                .authorizeHttpRequests(requests -> requests.anyRequest().permitAll());
-                return http.build();
-        }
+        // @Bean
+        // SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+        // http.csrf(csrf -> csrf.disable()).cors(withDefaults())
+        // .authorizeHttpRequests(requests -> requests.anyRequest().permitAll());
+        // return http.build();
+        // }
 
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
