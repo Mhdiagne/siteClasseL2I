@@ -2,7 +2,6 @@ package com.l2i.siteL2I.model.classroom;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.l2i.siteL2I.model.BaseEntity;
 import com.l2i.siteL2I.model.person.Professor;
 import com.l2i.siteL2I.model.person.Student;
@@ -27,15 +26,15 @@ public class Classroom extends BaseEntity {
     private int promotionNumber;
 
     @OneToMany(mappedBy = "classeroom")
-    @JsonManagedReference
+    // @JsonManagedReference
     private List<Student> students;
 
     @OneToMany(mappedBy = "classeroom")
-    @JsonManagedReference
+    // @JsonManagedReference
     private List<Professor> professors;
 
     @OneToMany(mappedBy = "classeroom")
-    @JsonManagedReference
+    // @JsonManagedReference()
     private List<Course> courses;
 
 }

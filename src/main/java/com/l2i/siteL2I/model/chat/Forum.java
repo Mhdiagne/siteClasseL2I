@@ -2,7 +2,6 @@ package com.l2i.siteL2I.model.chat;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.l2i.siteL2I.model.BaseEntity;
 
 import jakarta.persistence.Entity;
@@ -24,6 +23,6 @@ public class Forum extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "forum")
-    @JsonManagedReference
+    // @JsonManagedReference
     private List<Message> messages;
 }

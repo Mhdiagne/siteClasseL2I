@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class ForumResponse {
-    
+
     private Integer id;
     private String name;
     private List<Message> messages;
-    
+
     private LocalDateTime lastModifiedAt;
     private LocalDateTime creatAt;
     private String createdBy;

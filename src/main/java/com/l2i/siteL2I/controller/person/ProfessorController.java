@@ -1,6 +1,7 @@
 package com.l2i.siteL2I.controller.person;
 
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,10 +17,10 @@ import com.l2i.siteL2I.dto.person.ProfessorRequest;
 import com.l2i.siteL2I.dto.person.ProfessorResponse;
 import com.l2i.siteL2I.service.person.ProfessorService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/professor")
 public class ProfessorController {
 
@@ -40,18 +41,19 @@ public class ProfessorController {
         return professorService.create(requestItem);
     }
 
+    // @PostMapping("/test")
+    // public ResponseEntity<?> createUser(@RequestBody User requestItem) {
+    // return professorService.createUser(requestItem);
+    // }
+
     @PutMapping("{id}")
-    public ResponseEntity<ProfessorResponse> update(@PathVariable("id") Integer id, @RequestBody ProfessorRequest requestItem) {
+    public ResponseEntity<ProfessorResponse> update(@PathVariable("id") Integer id,
+            @RequestBody ProfessorRequest requestItem) {
         return professorService.update(id, requestItem);
     }
-    
 
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
         return professorService.delete(id);
     }
 }
-
-
-
-

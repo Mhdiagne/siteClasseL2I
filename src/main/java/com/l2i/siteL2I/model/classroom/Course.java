@@ -1,6 +1,5 @@
 package com.l2i.siteL2I.model.classroom;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.l2i.siteL2I.model.BaseEntity;
 import com.l2i.siteL2I.model.person.Professor;
 
@@ -26,11 +25,11 @@ public class Course extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
-    @JsonBackReference
+    // @JsonBackReference("course_classroom")
     private Classroom classeroom;
 
     @ManyToOne
     @JoinColumn(name = "professor_id")
-    @JsonBackReference
+    // @JsonBackReference("course_professor")
     private Professor professor;
 }

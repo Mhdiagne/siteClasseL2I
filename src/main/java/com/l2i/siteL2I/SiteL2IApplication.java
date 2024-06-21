@@ -50,7 +50,7 @@ public class SiteL2IApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+
 		Faker faker = new Faker();
 		// Random random = new Random();
 
@@ -62,17 +62,16 @@ public class SiteL2IApplication implements CommandLineRunner {
 
 		// Retrieve all forums
 		List<Forum> forums = forumRepository.findAll();
-		
+
 		// Create messages with random forums
 		for (int j = 0; j < 10; j++) {
 			// Forum randomForum = forums.get(random.nextInt(forums.size()));
 			MessageRequest messageRequest = new MessageRequest(
-				faker.lorem().characters(5, 25), 
-				faker.number().numberBetween(1, forums.size()),
-				null, 
-				faker.name().firstName(), 
-				faker.lorem().characters(5, 15)
-			);
+					faker.lorem().characters(5, 25),
+					faker.number().numberBetween(1, forums.size()),
+					null,
+					faker.name().firstName(),
+					faker.lorem().characters(5, 15));
 
 			messageService.create(messageRequest);
 		}
@@ -80,9 +79,8 @@ public class SiteL2IApplication implements CommandLineRunner {
 		// Create classrooms
 		for (int i = 0; i < 3; i++) {
 			ClassroomRequest classroomRequest = new ClassroomRequest(
-				faker.programmingLanguage().name(), 
-				faker.lorem().characters(5, 10)
-			);
+					faker.programmingLanguage().name(),
+					faker.lorem().characters(5, 10));
 			classroomService.create(classroomRequest);
 		}
 
@@ -91,20 +89,32 @@ public class SiteL2IApplication implements CommandLineRunner {
 
 		// Create professors
 		for (int i = 0; i < 15; i++) {
-			// Classroom randomClassroom = classrooms.get(random.nextInt(classrooms.size()));
+			// Classroom randomClassroom =
+			// classrooms.get(random.nextInt(classrooms.size()));
 			ProfessorRequest professorRequest = new ProfessorRequest(
-				faker.commerce().department(), 
-				faker.lorem().characters(5, 10), 
-				faker.number().numberBetween(1, classrooms.size()),
-				null, 
-				faker.name().lastName(),
-				faker.internet().emailAddress(),
-				faker.internet().password(),
-				null,
-				faker.lorem().characters(5, 10)
-			);
-			professorService.create(professorRequest);
+					faker.commerce().department(),
+					faker.lorem().characters(5, 10),
+					faker.number().numberBetween(1, classrooms.size()),
+					null,
+					faker.name().lastName(),
+					faker.internet().emailAddress(),
+					faker.internet().password(),
+
+					faker.lorem().characters(5, 10));
+			// professorService.create(professorRequest);
 		}
+
+		ProfessorRequest professorRequest = new ProfessorRequest(
+				faker.commerce().department(),
+				faker.lorem().characters(5, 10),
+				faker.number().numberBetween(1, classrooms.size()),
+				null,
+				faker.name().lastName(),
+				"test",
+				"test",
+
+				faker.lorem().characters(5, 10));
+		professorService.create(professorRequest);
 
 		// Retrieve all professors
 		List<Professor> professors = professorRepository.findAll();
@@ -114,30 +124,36 @@ public class SiteL2IApplication implements CommandLineRunner {
 			// Classroom classroom = classrooms.get(random.nextInt(classrooms.size()));
 
 			StudentRequest studentRequest = new StudentRequest(
-				faker.university().name(), 
-				faker.number().numberBetween(1, classrooms.size()),
-				faker.name().lastName(),
-				faker.internet().emailAddress(),
-				faker.internet().password(),
-				null,
-				faker.lorem().characters(5, 10)
-			);
+					faker.university().name(),
+					faker.number().numberBetween(1, classrooms.size()),
+					faker.name().lastName(),
+					faker.internet().emailAddress(),
+					faker.internet().password(),
+					null,
+					faker.lorem().characters(5, 10));
 			studentService.create(studentRequest);
 		}
-
+		StudentRequest studentRequest = new StudentRequest(
+				faker.university().name(),
+				faker.number().numberBetween(1, classrooms.size()),
+				faker.name().lastName(),
+				"test2",
+				"test2",
+				null,
+				faker.lorem().characters(5, 10));
+		studentService.create(studentRequest);
 		// Create courses
 		for (int k = 0; k < 10; k++) {
 			// Classroom classroom = classrooms.get(random.nextInt(classrooms.size()));
 			// Professor professor = professors.get(random.nextInt(professors.size()));
 
 			CourseRequest courseRequest = new CourseRequest(
-				faker.book().title(), 
-				faker.lorem().sentence(2), 
-				faker.number().numberBetween(1, classrooms.size()),
-				faker.number().numberBetween(1, professors.size()),
-				faker.lorem().sentence(2)
-			);
-			// courseService.create(courseRequest,null);
+					faker.book().title(),
+					faker.lorem().sentence(2),
+					faker.number().numberBetween(1, classrooms.size()),
+					faker.number().numberBetween(1, professors.size()),
+					faker.lorem().sentence(2));
+			courseService.create(courseRequest, null);
 		}
 	}
 

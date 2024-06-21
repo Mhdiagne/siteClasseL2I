@@ -3,9 +3,6 @@ package com.l2i.siteL2I.dto.chat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-// @AllArgsConstructor
-// @NoArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

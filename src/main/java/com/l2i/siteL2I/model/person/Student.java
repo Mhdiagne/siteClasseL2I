@@ -1,8 +1,5 @@
 package com.l2i.siteL2I.model.person;
 
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.l2i.siteL2I.model.classroom.Classroom;
 
 import jakarta.persistence.DiscriminatorValue;
@@ -10,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -23,11 +21,12 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @DiscriminatorValue("student")
 public class Student extends User {
-
+    @Builder.Default
+    private String role = "student";
     private String specialityStudent;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
-    @JsonBackReference
+    // @JsonBackReference("student_classroom")
     private Classroom classeroom;
 }

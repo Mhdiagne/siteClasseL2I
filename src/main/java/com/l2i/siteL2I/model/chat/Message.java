@@ -1,6 +1,5 @@
 package com.l2i.siteL2I.model.chat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.l2i.siteL2I.model.BaseEntity;
 import com.l2i.siteL2I.model.person.User;
 
@@ -25,11 +24,11 @@ public class Message extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "forum_id")
-    @JsonBackReference
+    // @JsonBackReference("message_forum")
     private Forum forum;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    // @JsonBackReference("message_user")
     private User user;
 }
