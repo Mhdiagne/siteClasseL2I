@@ -16,8 +16,8 @@
   color: #ffffff;
   font-size: 17px;
   font-weight: 500;
-  padding: 2px;
-  width: 8rem;
+  /* height: auto; */
+  width: 10rem;
   #jajeuf{
     text-decoration: none;
     color: white;
@@ -25,35 +25,30 @@
 }
 .mesBtn:hover{
   background-color: white !important;
-  
   #jajeuf{
     text-decoration: none;
     color: var(--bgColor2) !important;
-
   }
 
 }
-/* ------------------------------- */
-.nav-item{
-  font-size: 17px;
-  transition: transform 0.5s ease !important;
-
+.nav-item,
+.mesBtn {
+  /* margin-right: 3rem; */
+  padding: 4;
+  margin: 4;
+  margin-inline-start: 20px;
 }
-.nav-item:hover{
-  transform: scale(1.2) !important;
-}
-/* ------------------------------- */
 
 .navbar-nav .nav-item:last-child,
 .navbar-nav .mesBtn:last-child {
-  margin-right: -12px; 
+  margin-right: 0; 
 }
 
 .middlebar-container {
   display: flex;
   align-items: center;
   /* padding: 12px ; */
-  padding-top: 10px;
+  padding-top: 5px;
   margin-left: 10rem;
 }
 
@@ -110,11 +105,8 @@
   }
   
   /*** Navbar Start ***/
-  #KayFi{
-    padding-top: -10px;
-  }
   .navbar .navbar-nav {
-    padding-bottom: -12px;
+    padding-bottom: -15px;
   }
   
   .navbar .navbar-nav .nav-link {
@@ -122,14 +114,8 @@
     color: var(--bs-white);
     font-size: 18px;
     outline: none;
-    margin-left: -14px;
+    
   }
-
-  .nav-item,
-  .mesBtn {
-    margin-right: 3rem;
-  }
-
   
   .navbar .navbar-nav .nav-link:hover,
   .navbar .navbar-nav .nav-link.active {
@@ -155,7 +141,7 @@
         transition: .5s;
         opacity: 0;
     }
-  } 
+  }
   
   .navbar .nav-item:hover .dropdown-menu {
     transform: rotateX(0deg);

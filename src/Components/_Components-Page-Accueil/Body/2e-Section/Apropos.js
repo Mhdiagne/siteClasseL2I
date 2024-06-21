@@ -1,5 +1,5 @@
 import React from 'react'
-import monSvg from '../../../../Assets/img/Innovation-pana 1.svg';
+import monSvg from '../../../../Assets/img/innovation-animate.svg';
 import '../../../../Styles/AproposSection2.css'
 import { Link } from 'react-router-dom';
 export default function Apropos() {
@@ -24,10 +24,10 @@ export default function Apropos() {
       
         </p>
         <ul>
-          <li>Concevoir un système informatique(SI) </li> 
-          <li>Développer des applications web /mobiles </li>
-          <li>Administrer des réseaux informatiques</li>
-          <li>Administrer des bases de données</li>
+          <li className='Stronger'>Concevoir un système informatique(SI) </li> 
+          <li className='Stronger'>Développer des applications web /mobiles </li>
+          <li className='Stronger'>Administrer des réseaux informatiques</li>
+          <li className='Stronger'>Administrer des bases de données</li>
           
         </ul> 
         <Link to='/a-propos'>

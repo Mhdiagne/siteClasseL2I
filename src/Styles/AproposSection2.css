@@ -23,6 +23,9 @@
     border: none;
     transform: scale(1.1);
 }
+.Stronger{
+  font-weight: 600;
+}
 /* ----------------------------------- */
 /* .separator {
     width: 100%;
