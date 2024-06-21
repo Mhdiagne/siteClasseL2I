@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.l2i.siteL2I.dto.person.ProfessorRequest;
 import com.l2i.siteL2I.dto.person.ProfessorResponse;
 import com.l2i.siteL2I.service.person.ProfessorService;
+import com.l2i.siteL2I.service.person.UserDetailsServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class ProfessorController {
 
     private final ProfessorService professorService;
+    private final UserDetailsServiceImpl userService;
 
     @GetMapping
     public ResponseEntity<List<ProfessorResponse>> getAll() {
@@ -34,6 +36,13 @@ public class ProfessorController {
     @GetMapping("{id}")
     public ResponseEntity<ProfessorResponse> getById(@PathVariable("id") Integer id) {
         return professorService.getById(id);
+    }
+
+    @GetMapping("current_user")
+    public ResponseEntity<?> getUserCurrent() {
+
+        return ResponseEntity.ok(userService.getUserContext());
+
     }
 
     @PostMapping

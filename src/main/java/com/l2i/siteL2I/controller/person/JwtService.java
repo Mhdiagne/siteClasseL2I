@@ -1,17 +1,16 @@
 package com.l2i.siteL2I.controller.person;
 
+import java.security.Key;
+import java.util.Date;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Component;
+
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import java.security.Key;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 @Component
 public class JwtService {
@@ -73,31 +72,5 @@ public class JwtService {
 
 		return null;
 	}
-
-	//   // Récupère les informations de l'utilisateur actuellement authentifié
-    // public UserContext getUserContext() {
-    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-    //     if (authentication != null && authentication.isAuthenticated()) {
-    //         String username = null;
-    //         String role = null;
-
-    //         if (authentication.getPrincipal() instanceof UserDetails) {
-    //             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-    //             username = userDetails.getUsername();
-    //             role = userDetails.getAuthorities().stream()
-    //                     .findFirst()
-    //                     .map(authority -> authority.getAuthority())
-    //                     .orElse(null);
-    //         } else if (authentication.getPrincipal() instanceof String) {
-    //             // Si l'utilisateur est authentifié avec un token JWT contenant juste le nom d'utilisateur
-    //             username = (String) authentication.getPrincipal();
-    //         }
-
-    //         return new UserContext(username, role);
-    //     }
-
-    //     return null;
-    // }
 
 }
